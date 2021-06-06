@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Abacus Communication API Example</title>
+  <style>
+    html {
+      background: #312e44;
+    }
+
+    .notice {
+      margin-bottom: 20px;
+      padding: 30px;
+      color: rgb(187, 187, 187);
+      background-color: rgb(38, 35, 53);
+      font-family: Menlo, Monaco, 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 12px;
+    }
+
+    .result {
+      color: pink;
+    }
+  </style>
+
+  <!-- Axios -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.min.js"></script>
+
+</head>
+
+<body>
+  <div class="notice">
+    <p>Here you can see the data delivered from the app.</p>
+    <p>Live Response (JSON):</p>
+    <br />
+
+    <div class="result"></div>
+  </div>
+
+  <div class="notice">
+    <p>Before using JavaScript below, you must install Axios from the page.</p>
+    <div><span style="color: #ffffff;"> </span><span style="color: #36f9f6;">&lt;</span><span
+        style="color: #72f1b8;">script</span><span style="color: #ffffff;"> </span><span
+        style="color: #fede5d;font-style: italic;">src</span><span style="color: #b6b1b1;">=</span><span
+        style="color: #ff8b39;">"https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.min.js"</span><span
+        style="color: #36f9f6;">&gt;&lt;/</span><span style="color: #72f1b8;">script</span><span
+        style="color: #36f9f6;">&gt;</span></div>
+  </div>
+
+  <div class="code" />
+
+  <script>
+    var code = document.querySelector('.code')
+    var html = `<div style="color: rgb(187, 187, 187); background-color: rgb(38, 35, 53); font-family: Menlo, Monaco, &quot;Courier New&quot;, monospace; font-size: 12px; line-height: 18px; white-space: pre;"><br><div><span style="color: #ffffff;">    </span><span style="color: #848bbd;font-style: italic;">// Below is an example code of how to communicate with the Abacus app.</span></div><div><span style="color: #ffffff;">    </span><span style="color: #848bbd;font-style: italic;">// Copyright Abacus Technology.</span></div><br><div><span style="color: #ffffff;">    </span><span style="color: #848bbd;font-style: italic;">// Register Function</span></div><div><span style="color: #ffffff;">    </span><span style="color: #fede5d;">function</span><span style="color: #ffffff;"> </span><span style="color: #36f9f6;">registerConnect</span><span style="color: #ffffff;">(</span><span style="color: #ff7edb;font-style: italic;">callback</span><span style="color: #ffffff;">) {</span></div><br><div><span style="color: #ffffff;">      </span><span style="color: #848bbd;font-style: italic;">// For Desktop</span></div><div><span style="color: #ffffff;">      </span><span style="color: #36f9f6;">setInterval</span><span style="color: #ffffff;">(</span><span style="color: #fede5d;">function</span><span style="color: #ffffff;"> () {</span></div><div><span style="color: #ffffff;">        </span><span style="color: #ff7edb;">window</span><span style="color: #ffffff;">.</span><span style="color: #ff7edb;">axios</span><span style="color: #ffffff;">.</span><span style="color: #36f9f6;">get</span><span style="color: #ffffff;">(</span><span style="color: #ff8b39;">"http://localhost:38575/v1/abacus"</span><span style="color: #ffffff;">)</span></div><div><span style="color: #ffffff;">          .</span><span style="color: #36f9f6;">then</span><span style="color: #ffffff;">(</span><span style="color: #fede5d;">function</span><span style="color: #ffffff;"> (</span><span style="color: #ff7edb;font-style: italic;">response</span><span style="color: #ffffff;">) {</span></div><div><span style="color: #ffffff;">            </span><span style="color: #ff7edb;font-style: italic;">callback</span><span style="color: #ffffff;">(</span><span style="color: #ff7edb;font-style: italic;">response</span><span style="color: #ffffff;">.</span><span style="color: #2ee2fa;">data</span><span style="color: #ffffff;">);</span></div><div><span style="color: #ffffff;">          })</span></div><div><span style="color: #ffffff;">      }, </span><span style="color: #2ee2fa;">200</span><span style="color: #ffffff;">);</span></div><br><div><span style="color: #ffffff;">      </span><span style="color: #848bbd;font-style: italic;">// For Mobile</span></div><div><span style="color: #ffffff;">      </span><span style="color: #ff7edb;">window</span><span style="color: #ffffff;">.</span><span style="color: #36f9f6;">transferAbacusMobile</span><span style="color: #ffffff;"> = </span><span style="color: #fede5d;">function</span><span style="color: #ffffff;"> (</span><span style="color: #ff7edb;font-style: italic;">data</span><span style="color: #ffffff;">) {</span></div><div><span style="color: #ffffff;">        </span><span style="color: #ff7edb;font-style: italic;">callback</span><span style="color: #ffffff;">(</span><span style="color: #fe4450;">JSON</span><span style="color: #ffffff;">.</span><span style="color: #36f9f6;">parse</span><span style="color: #ffffff;">(</span><span style="color: #ff7edb;font-style: italic;">data</span><span style="color: #ffffff;">));</span></div><div><span style="color: #ffffff;">      }</span></div><div><span style="color: #ffffff;">    }</span></div><br><div><span style="color: #ffffff;">    </span><span style="color: #848bbd;font-style: italic;">// Example</span></div><div><span style="color: #ffffff;">    </span><span style="color: #36f9f6;">registerConnect</span><span style="color: #ffffff;">(</span><span style="color: #fede5d;">function</span><span style="color: #ffffff;"> (</span><span style="color: #ff7edb;font-style: italic;">data</span><span style="color: #ffffff;">) {</span></div><div><span style="color: #ffffff;">      </span><span style="color: #ff7edb;">document</span><span style="color: #ffffff;">.</span><span style="color: #36f9f6;">querySelector</span><span style="color: #ffffff;">(</span><span style="color: #ff8b39;">'.result'</span><span style="color: #ffffff;">).</span><span style="color: #ff7edb;">innerHTML</span><span style="color: #ffffff;"> = </span><span style="color: #fe4450;">JSON</span><span style="color: #ffffff;">.</span><span style="color: #36f9f6;">stringify</span><span style="color: #ffffff;">(</span><span style="color: #ff7edb;font-style: italic;">data</span><span style="color: #ffffff;">, </span><span style="color: #f97e72;">null</span><span style="color: #ffffff;">, </span><span style="color: #2ee2fa;">2</span><span style="color: #ffffff;">);</span></div><div><span style="color: #ffffff;">    })</span></div><br></div>`
+
+    if (code) code.innerHTML = html
+    document.querySelector('.result').innerHTML = JSON.stringify({}, null, 2);
+  </script>
+  <script>
+
+    // Below is an example code of how to communicate with the Abacus app.
+    // Copyright Abacus Technology.
+
+    // Register Function
+    function registerConnect(callback) {
+
+      // For Desktop
+      setInterval(function () {
+        window.axios.get("http://localhost:38575/v1/abacus")
+          .then(function (response) {
+            callback(response.data);
+          })
+      }, 200);
+
+      // For Mobile
+      window.transferAbacusMobile = function (data) {
+        callback(JSON.parse(data));
+      }
+    }
+
+    // Example
+    registerConnect(function (data) {
+      document.querySelector('.result').innerHTML = JSON.stringify(data, null, 2);
+    })
+
+  </script>
+</body>
+
+</html>
